@@ -6,9 +6,10 @@ import java.net.UnknownHostException;
 
 public class Client {
     Socket socket;
+
     public void login() {
-        try{
-            socket = new Socket("localhost",7496);
+        try {
+            socket = new Socket("localhost", 7496);
             MsgForeThread thread = new MsgForeThread(socket);
             thread.start();
         } catch (UnknownHostException e) {
@@ -21,9 +22,10 @@ public class Client {
     public void chess(int x, int y) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         PrintWriter pw = new PrintWriter(socket.getOutputStream());
-        pw.write("P"+x+""+y+"");
+        pw.write("P" + x + "" + y + "");
     }
 }
+
 class MsgForeThread extends Thread {
     private Socket socket = null;
 
